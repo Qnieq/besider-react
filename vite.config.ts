@@ -8,4 +8,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api.nytimes.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/svc/archive/v1')
+      }
+    }
+  }
 })

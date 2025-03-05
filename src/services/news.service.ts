@@ -5,10 +5,10 @@ const API_KEY = 'vtgVpvTm159wt4bU8lucT2zdBOB0GNL5';
 
 export const newsApi = createApi({
   reducerPath: 'newsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.nytimes.com/svc/archive/v1/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api/archive/v1/' }),
   endpoints: (builder) => ({
     getNewsByMonth: builder.query<NewsResponse, { year: number; month: number }>({
-      query: ({ year, month }) => `${year}/${month}.json?api-key=${API_KEY}`
+      query: ({ year, month }) => `${year}/${month}.json?api-key=${API_KEY}`,
     })
   })
 });
