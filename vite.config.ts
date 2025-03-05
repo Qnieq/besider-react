@@ -4,11 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
   server: {
+    cors: false,
     proxy: {
       '/api': {
         target: 'https://api.nytimes.com/svc/archive/v1/',
@@ -17,4 +14,8 @@ export default defineConfig({
       },
     },
   },
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
 })

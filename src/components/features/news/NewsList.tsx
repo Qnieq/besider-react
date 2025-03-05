@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MonthNews from './MonthNews';
+import LoadingIndicator from '../../ui/LoadingIndicator';
 
 interface Month {
     year: number;
@@ -14,7 +15,7 @@ const NewsList: React.FC = () => {
 
     const handleScroll = useCallback(() => {
         const nearBottom =
-            window.innerHeight + window.scrollY >= document.body.offsetHeight - 500;
+            window.innerHeight + window.scrollY >= document.body.offsetHeight;
         if (nearBottom) {
             setMonths(prev => {
                 const last = prev[prev.length - 1];
@@ -40,7 +41,7 @@ const NewsList: React.FC = () => {
     }, [handleScroll]);
 
     return (
-        <div className="p-4">
+        <div className="px-5">
             {months.map((m, index) => (
                 <MonthNews
                     key={`${m.year}-${m.month}`}
@@ -50,6 +51,9 @@ const NewsList: React.FC = () => {
                     polling={index === 0}
                 />
             ))}
+            <div className='py-10'>
+                <LoadingIndicator />
+            </div>
         </div>
     );
 };
